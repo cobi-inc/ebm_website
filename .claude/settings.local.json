@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nvm:*)",
+      "Bash(source:*)",
+      "Bash(pnpm:*)",
+      "Bash(node --version:*)",
+      "Bash(corepack enable:*)",
+      "Bash(timeout 10 bash -c 'pnpm dev 2>&1 & PID=$!; sleep 6; curl -s -o /dev/null -w \"\"%{http_code}\"\" http://localhost:3000/chapters/introduction-to-energy; kill $PID 2>/dev/null; wait $PID 2>/dev/null')"
+    ]
+  }
+}
