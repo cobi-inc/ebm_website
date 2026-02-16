@@ -47,6 +47,18 @@ pnpm install     # install dependencies
 - Keyboard navigation (left/right arrow keys) required for accessibility
 - Page transitions should simulate page-turning with smooth sliding animations
 
+## Responsive Design Rules
+
+- All UI components **must** work correctly on both mobile and desktop viewports
+- Fixed-position elements (nav arrows, floating buttons, tooltips) must account for the sidebar width (`w-64` / 16rem) on `md:` breakpoints so they are never hidden behind it
+- Always test layout at mobile (<768px) and desktop (>=768px) sizes before considering a UI task complete
+- Use Tailwind responsive prefixes (`md:`, `lg:`) to adjust positioning and sizing per breakpoint
+
+## Git Workflow Rules
+
+- **Use git worktrees for major work:** Before starting any major feature or bug fix, create a new git worktree (e.g., `git worktree add ../ebm-website-<branch-name> -b <branch-name>`) and work there. This keeps `master` clean and allows safe parallel development. Skip this only for trivial single-file edits.
+- **Commit after every major change:** After completing any significant code change (new feature, bug fix, refactor), immediately create a commit with a descriptive message. This preserves a granular history so any change can be easily reverted if it introduces problems. Do not batch multiple unrelated changes into a single commit.
+
 ## Key Design Documents
 
 - `WEBSITE_DESIGN_DOC.md` — Full project specification (infrastructure, UI/UX, content structure)

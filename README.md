@@ -39,7 +39,12 @@ The website is designed to feel like reading an interactive book, featuring:
    nvm use
    ```
 
-3. **Install dependencies:**
+3. **Enable pnpm (if not available):**
+   ```bash
+   corepack enable pnpm
+   ```
+
+4. **Install dependencies:**
    ```bash
    pnpm install
    ```

@@ -21,7 +21,7 @@ export function ChapterNav({ slug }: { slug: string }) {
           onClick={() => router.push(`/chapters/${prev.slug}`)}
           onMouseEnter={() => setHoveredDirection("prev")}
           onMouseLeave={() => setHoveredDirection(null)}
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 transition-all group hidden md:flex items-center"
+          className="fixed left-4 md:left-[17rem] top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/5 hover:bg-black/10 text-black/50 hover:text-black transition-all group hidden md:flex items-center"
           aria-label={`Previous: ${prev.title}`}
         >
           <svg
@@ -38,7 +38,7 @@ export function ChapterNav({ slug }: { slug: string }) {
             />
           </svg>
           {hoveredDirection === "prev" && (
-            <span className="absolute left-full ml-2 whitespace-nowrap bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg">
+            <span className="absolute left-full ml-2 whitespace-nowrap bg-black text-white text-sm px-3 py-1.5 rounded-lg">
               {prev.title}
             </span>
           )}
@@ -50,11 +50,11 @@ export function ChapterNav({ slug }: { slug: string }) {
           onClick={() => router.push(`/chapters/${next.slug}`)}
           onMouseEnter={() => setHoveredDirection("next")}
           onMouseLeave={() => setHoveredDirection(null)}
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 transition-all group hidden md:flex items-center"
+          className="fixed right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/5 hover:bg-black/10 text-black/50 hover:text-black transition-all group hidden md:flex items-center"
           aria-label={`Next: ${next.title}`}
         >
           {hoveredDirection === "next" && (
-            <span className="absolute right-full mr-2 whitespace-nowrap bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg">
+            <span className="absolute right-full mr-2 whitespace-nowrap bg-black text-white text-sm px-3 py-1.5 rounded-lg">
               {next.title}
             </span>
           )}

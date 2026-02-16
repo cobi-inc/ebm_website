@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${merriweather.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-serif bg-white text-gray-900 antialiased">
+      <body className="font-serif bg-[var(--color-background)] text-black antialiased">
         <ProgressBar />
         <Sidebar />
         <main className="ml-0 md:ml-64 min-h-screen transition-[margin] duration-300">
