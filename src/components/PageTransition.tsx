@@ -2,10 +2,12 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
+import { getChapterIndex } from "@/lib/chapters";
 
 const variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 300 : -300,
+    x: direction > 0 ? "40%" : "-40%",
     opacity: 0,
   }),
   center: {
@@ -13,33 +15,41 @@ const variants = {
     opacity: 1,
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? -300 : 300,
+    x: direction > 0 ? "-40%" : "40%",
     opacity: 0,
   }),
 };
 
-export function PageTransition({
-  children,
-  direction,
-}: {
-  children: React.ReactNode;
-  direction: number;
-}) {
+export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const slug = pathname.split("/chapters/")[1] ?? "";
+  const currentIndex = getChapterIndex(slug);
+
+  const prevIndexRef = useRef(currentIndex);
+  const directionRef = useRef(1);
+
+  if (currentIndex !== prevIndexRef.current) {
+    directionRef.current = currentIndex > prevIndexRef.current ? 1 : -1;
+    prevIndexRef.current = currentIndex;
+  }
+
+  const direction = directionRef.current;
 
   return (
-    <AnimatePresence mode="wait" custom={direction}>
-      <motion.div
-        key={pathname}
-        custom={direction}
-        variants={variants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <div className="relative overflow-hidden">
+      <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+        <motion.div
+          key={pathname}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
