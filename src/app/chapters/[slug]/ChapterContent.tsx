@@ -1,5 +1,4 @@
-"use client";
-
+import dynamic from "next/dynamic";
 import { chapters, type Chapter } from "@/lib/chapters";
 
 export function ChapterContent({
@@ -9,6 +8,20 @@ export function ChapterContent({
   chapter: Chapter;
   index: number;
 }) {
+  // Lazily load the chapter content
+  const DynamicContent = dynamic(
+    () => import(`@/content/chapters/${chapter.slug}.mdx`),
+    {
+      loading: () => (
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-black/5 rounded w-3/4"></div>
+          <div className="h-4 bg-black/5 rounded w-full"></div>
+          <div className="h-4 bg-black/5 rounded w-5/6"></div>
+        </div>
+      ),
+    }
+  );
+
   return (
     <article className="max-w-3xl mx-auto px-6 py-16 md:px-12">
       <div className="mb-8">
@@ -16,18 +29,8 @@ export function ChapterContent({
           Chapter {index + 1} of {chapters.length}
         </span>
       </div>
-      <div className="prose prose-lg prose-gray max-w-none">
-        <h1 className="text-4xl font-bold mb-8">{chapter.title}</h1>
-        <p className="text-xl text-black/60 leading-relaxed">
-          This chapter is coming soon. Content for &ldquo;{chapter.title}
-          &rdquo; will be added here.
-        </p>
-        <div className="mt-12 p-6 bg-black/[0.03] rounded-xl border border-black/10">
-          <p className="text-black/50 text-sm font-mono">
-            Placeholder content — navigate between chapters using the arrows
-            on the sides or the left/right arrow keys on your keyboard.
-          </p>
-        </div>
+      <div className="prose prose-lg prose-gray max-w-none prose-headings:font-bold prose-h1:text-4xl prose-p:text-xl prose-p:text-black/60 prose-p:leading-relaxed">
+        <DynamicContent />
       </div>
     </article>
   );

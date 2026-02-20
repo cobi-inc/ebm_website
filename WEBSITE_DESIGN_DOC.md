@@ -37,12 +37,24 @@
     * **Code Blocks:** Monospace fonts.
     * **Readability:** Use Tailwind's `prose` class with a centered, readable max-width.
 
-* **Transitions:**
+    * **Transitions:**
     * Implement smooth sliding transitions (using Framer Motion or CSS transitions) when the user clicks the navigation arrows to simulate turning a page.
 
-## 3. Interactive Graphics & Visualizations
-**Goal:** Use interactive visualizations to demystify Energy-Based Models (EBMs), allowing users to "play" with the concepts described in the paper (e.g., Langevin Dynamics, Energy Landscapes).
+## 3. Content Strategy & Scalability
+**Goal:** Ensure the website remains fast and maintainable as dozens of chapters are added.
 
+* **MDX Integration:**
+    * All chapter content is authored in **MDX** (`.mdx`).
+    * This allows for standard Markdown text interspersed with complex, interactive React components (visualizations).
+* **Dynamic Content Loading:**
+    * Content for each chapter must reside in its own dedicated file (e.g., `src/content/chapters/[slug].mdx`).
+    * **NEVER** bundle all chapter content into a single file or a large `switch` statement.
+* **Lazy Loading:**
+    * The `ChapterContent` component uses Next.js `dynamic` imports to load the specific MDX file for the current chapter on-demand.
+    * This ensures users only download the assets and code required for the page they are viewing.
+
+## 4. Interactive Graphics & Visualizations
+**Goal:** Use interactive visualizations to demystify Energy-Based Models (EBMs), allowing users to "play" with the concepts described in the paper (e.g., Langevin Dynamics, Energy Landscapes).
 * **Technology Stack:**
     * **React Flow:** Use for node-based architectural diagrams and process flows.
     * **VisX:** Use for data visualization, mathematical plotting, and animations (D3-based).

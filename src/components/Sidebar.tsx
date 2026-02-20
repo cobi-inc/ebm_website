@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { chapters } from "@/lib/chapters";
@@ -58,6 +59,14 @@ export function Sidebar() {
         } md:translate-x-0`}
       >
         <div className="p-6 border-b border-white/10">
+          <Image
+            src="/cobi_logo.png"
+            alt="Cobi Logo"
+            width={180}
+            height={63}
+            className="mb-4"
+            priority
+          />
           <h1 className="text-lg font-bold tracking-tight">EBM Tutorial</h1>
           <p className="text-sm text-white/60 mt-1">& Cobi Library Guide</p>
         </div>
