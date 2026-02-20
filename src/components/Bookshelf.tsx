@@ -73,9 +73,10 @@ export default function Bookshelf() {
   const books: BookProps[] = [
     {
       title: "THE BASICS",
-      color: "#BE11FF", 
-      href: "/chapters/introduction-to-energy",
+      color: "#2D3748", 
+      href: "#",
       delay: 0.1,
+      isComingSoon: true,
     },
     {
       title: "PROBABILISTIC INFERENCE TIME ALGORITHMS",
@@ -85,11 +86,10 @@ export default function Bookshelf() {
       isComingSoon: true,
     },
     {
-      title: "EBMS",
-      color: "#2D3748",
-      href: "#",
+      title: "ENERGY BASED MODELS",
+      color: "#BE11FF",
+      href: "/chapters/introduction-to-energy",
       delay: 0.3,
-      isComingSoon: true,
     },
   ];
 
