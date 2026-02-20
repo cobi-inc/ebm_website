@@ -12,7 +12,7 @@ interface BookProps {
   isComingSoon?: boolean;
 }
 
-const BookSpine = ({ title, color, href, delay, isComingSoon }: BookProps) => {
+const BookCover = ({ title, color, href, delay, isComingSoon }: BookProps) => {
   return (
     <motion.div
       initial={{ y: 50, opacity: 0 }}
@@ -22,43 +22,44 @@ const BookSpine = ({ title, color, href, delay, isComingSoon }: BookProps) => {
     >
       <Link
         href={isComingSoon ? "#" : href}
-        className={`block relative w-64 h-80 transition-all duration-300 transform group-hover:-translate-y-8 group-hover:scale-105 shadow-[4px_0_15px_rgba(0,0,0,0.3)] rounded-sm ${
+        className={`block relative w-56 h-80 transition-all duration-300 transform group-hover:-translate-y-6 group-hover:scale-105 shadow-2xl rounded-r-sm ${
           isComingSoon ? "cursor-not-allowed grayscale" : "cursor-pointer"
         }`}
         style={{
           backgroundColor: color,
         }}
       >
-        {/* Spine Texture/Lines */}
-        <div className="absolute inset-0 flex flex-col justify-between py-6 pointer-events-none">
-          <div className="border-y border-white/20 h-10 flex items-center justify-center">
-             <div className="w-8 h-3 opacity-40">
+        {/* Spine shadow (left edge of the cover) */}
+        <div className="absolute inset-y-0 left-0 w-4 bg-black/20 rounded-l-sm" />
+        
+        {/* Cover Content */}
+        <div className="absolute inset-0 p-8 flex flex-col justify-between text-white">
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-4 mb-8 opacity-60">
                 <Image
                   src="/cobi_logo.png"
                   alt=""
-                  width={32}
-                  height={11}
-                  className="brightness-0 invert"
+                  width={48}
+                  height={17}
+                  className="brightness-0 invert mx-auto"
                 />
-             </div>
+            </div>
+            <h3 className="font-serif text-xl font-black text-center leading-tight tracking-tight uppercase drop-shadow-md">
+              {title}
+            </h3>
           </div>
-          <div className="border-y border-white/20 h-6" />
+          
+          <div className="text-[10px] text-center opacity-40 font-mono tracking-widest uppercase">
+            Cobi Press
+          </div>
         </div>
 
-        {/* Horizontal Title */}
-        <div className="absolute inset-0 flex items-center justify-center p-6">
-          <h3 className="font-serif text-lg font-black text-white text-center leading-tight tracking-tight uppercase drop-shadow-lg">
-            {title}
-          </h3>
-        </div>
-
-        {/* Gloss/Shadow for 3D effect */}
-        <div className="absolute inset-y-0 left-0 w-2 bg-white/10" />
-        <div className="absolute inset-y-0 right-0 w-3 bg-black/20" />
+        {/* Highlight/Gloss */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-r-sm" />
         
         {isComingSoon && (
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <span className="text-xs text-white font-bold uppercase tracking-widest">
+            <span className="text-sm text-white font-bold uppercase tracking-widest bg-black/60 px-3 py-1 rounded">
               Coming Soon
             </span>
           </div>
@@ -98,7 +99,7 @@ export default function Bookshelf() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-24"
+        className="text-center mb-20"
       >
         <Image
           src="/cobi_logo.png"
@@ -115,12 +116,12 @@ export default function Bookshelf() {
 
       <div className="relative">
         {/* The Wooden Shelf */}
-        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[110%] h-6 bg-[#3d2b1f] rounded-sm shadow-xl z-0" />
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[105%] h-4 bg-[#2a1d15] rounded-b-sm z-0" />
+        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[115%] h-6 bg-[#3d2b1f] rounded-sm shadow-xl z-0" />
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[110%] h-4 bg-[#2a1d15] rounded-b-sm z-0" />
         
-        <div className="flex items-end justify-center gap-2 relative z-10 px-10">
+        <div className="flex items-end justify-center gap-8 relative z-10 px-10">
           {books.map((book) => (
-            <BookSpine key={book.title} {...book} />
+            <BookCover key={book.title} {...book} />
           ))}
         </div>
       </div>
@@ -131,7 +132,7 @@ export default function Bookshelf() {
         transition={{ delay: 1, duration: 1 }}
         className="mt-32 text-black/40 text-sm font-serif italic"
       >
-        Select a book to begin.
+        Select a book to begin your journey.
       </motion.footer>
     </div>
   );
