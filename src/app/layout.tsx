@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Merriweather, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
-import { ProgressBar } from "@/components/ProgressBar";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -18,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EBM Tutorial & Cobi Library Guide",
+  title: "Cobi Library",
   description:
-    "An interactive tutorial on Energy-Based Models and the Cobi Library",
+    "An interactive library of tutorials on Energy-Based Models and the Cobi ecosystem.",
 };
 
 export default function RootLayout({
@@ -31,9 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${merriweather.variable} ${jetbrainsMono.variable}`}>
       <body className="font-serif bg-[var(--color-background)] text-black antialiased">
-        <ProgressBar />
-        <Sidebar />
-        <main className="ml-0 md:ml-64 min-h-screen transition-[margin] duration-300">
+        <main className="min-h-screen">
           {children}
         </main>
       </body>

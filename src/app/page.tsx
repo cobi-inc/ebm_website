@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import Bookshelf from "@/components/Bookshelf";
 
 export default function Home() {
-  redirect("/chapters/introduction-to-energy");
+  return <Bookshelf />;
 }
