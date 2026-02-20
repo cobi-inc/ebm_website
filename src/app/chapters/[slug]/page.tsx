@@ -1,5 +1,13 @@
 import { notFound } from "next/navigation";
-import { chapters, getChapterBySlug, getChapterIndex } from "@/lib/chapters";
+import { 
+  chapters, 
+  getChapterBySlug, 
+  getChapterIndexInBook, 
+  getBookChapterCount,
+  getModuleIndexInBook,
+  getChapterIndexInModule,
+  getModuleChapterCount
+} from "@/lib/chapters";
 import { ChapterNav } from "@/components/ChapterNav";
 import { ChapterContent } from "./ChapterContent";
 
@@ -27,12 +35,23 @@ export default async function ChapterPage({
   const chapter = getChapterBySlug(slug);
   if (!chapter) notFound();
 
-  const index = getChapterIndex(slug);
+  const indexInBook = getChapterIndexInBook(slug);
+  const totalInBook = getBookChapterCount(chapter.bookId);
+  const moduleIndex = getModuleIndexInBook(slug);
+  const chapterIndexInModule = getChapterIndexInModule(slug);
+  const totalInModule = getModuleChapterCount(slug);
 
   return (
     <div className="relative">
       <ChapterNav slug={slug} />
-      <ChapterContent chapter={chapter} index={index} />
+      <ChapterContent 
+        chapter={chapter} 
+        indexInBook={indexInBook} 
+        totalInBook={totalInBook} 
+        moduleIndex={moduleIndex}
+        chapterIndexInModule={chapterIndexInModule}
+        totalInModule={totalInModule}
+      />
     </div>
   );
 }

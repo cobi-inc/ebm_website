@@ -37,7 +37,7 @@ const BookCover = ({ title, color, href, delay, isComingSoon }: BookProps) => {
           <div className="flex flex-col items-center">
             <div className="w-12 h-4 mb-8 opacity-60">
                 <Image
-                  src="/cobi_logo.png"
+                  src="/cobi_logo_transparent_background.png"
                   alt=""
                   width={48}
                   height={17}
@@ -72,29 +72,35 @@ const BookCover = ({ title, color, href, delay, isComingSoon }: BookProps) => {
 export default function Bookshelf() {
   const books: BookProps[] = [
     {
-      title: "THE BASICS",
+      title: "AI BASICS",
       color: "#2D3748", 
-      href: "#",
+      href: "/chapters/linear-layers",
       delay: 0.1,
+    },
+    {
+      title: "INTRO TO PROBABILISTIC COMPUTING",
+      color: "#4A5568",
+      href: "#",
+      delay: 0.2,
       isComingSoon: true,
     },
     {
       title: "PROBABILISTIC INFERENCE TIME ALGORITHMS",
       color: "#1A1A1A",
       href: "#",
-      delay: 0.2,
+      delay: 0.3,
       isComingSoon: true,
     },
     {
       title: "ENERGY BASED MODELS",
       color: "#BE11FF",
       href: "/chapters/introduction-to-energy",
-      delay: 0.3,
+      delay: 0.4,
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)] flex flex-col items-center justify-center p-8 overflow-hidden">
+    <div className="min-h-screen bg-[#a87c5d] flex flex-col items-center justify-center p-8 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -102,7 +108,7 @@ export default function Bookshelf() {
         className="text-center mb-20"
       >
         <Image
-          src="/cobi_logo.png"
+          src="/cobi_logo_transparent_background.png"
           alt="Cobi Logo"
           width={180}
           height={63}

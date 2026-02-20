@@ -28,6 +28,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${merriweather.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+          integrity="sha384-GvrOXuh87WwydhsHdV70xeXitZTSLhLHOlt87S9DVGInyT7V4XUlrB7A1B8N4N3/"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="font-serif bg-[var(--color-background)] text-black antialiased">
         <main className="min-h-screen">
           {children}

@@ -7,7 +7,7 @@ import { getChapterIndex } from "@/lib/chapters";
 
 const variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? "40%" : "-40%",
+    x: direction > 0 ? "10%" : "-10%",
     opacity: 0,
   }),
   center: {
@@ -15,7 +15,7 @@ const variants = {
     opacity: 1,
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? "-40%" : "40%",
+    x: direction > 0 ? "-10%" : "10%",
     opacity: 0,
   }),
 };
@@ -45,7 +45,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
         >
           {children}
         </motion.div>
