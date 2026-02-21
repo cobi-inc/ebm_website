@@ -1,16 +1,18 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { chapters, getChapterIndex } from "@/lib/chapters";
+import { getChapterBySlug, getChapterIndexInBook, getBookChapterCount } from "@/lib/chapters";
 
 export function ProgressBar() {
   const pathname = usePathname();
   const slug = pathname.split("/chapters/")[1] ?? "";
-  const index = getChapterIndex(slug);
-  const progress =
-    index >= 0 ? ((index + 1) / chapters.length) * 100 : 0;
+  const chapter = getChapterBySlug(slug);
+  
+  if (!chapter) return null;
 
-  if (index < 0) return null;
+  const indexInBook = getChapterIndexInBook(slug);
+  const totalInBook = getBookChapterCount(chapter.bookId);
+  const progress = ((indexInBook + 1) / totalInBook) * 100;
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-black/10">
